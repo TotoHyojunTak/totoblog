@@ -1,6 +1,6 @@
 package com.totoblog.service.component;
 
-import com.totoblog.data.dto.request.BlogRecordReqDTO;
+import com.totoblog.data.dto.request.BlogReqDTO;
 import com.totoblog.data.dto.response.BlogDTO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -17,7 +17,7 @@ public class ApiCallerTemplate {
 
 	private final List<ApiCaller> providerCaller;
 
-	public BlogDTO.Response getList(@NotNull @Valid BlogRecordReqDTO request) {
+	public BlogDTO.Response getList(@NotNull @Valid BlogReqDTO request) {
 		for (ApiCaller client : providerCaller) {
 			try {
 				return client.list(request);

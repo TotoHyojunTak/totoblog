@@ -1,16 +1,14 @@
 package com.totoblog.service;
 
 
-import com.totoblog.data.dto.request.BlogRecordReqDTO;
+import com.totoblog.data.dto.request.BlogReqDTO;
 import com.totoblog.data.dto.response.BlogDTO;
-import com.totoblog.service.component.*;
+import com.totoblog.service.component.ApiCallerTemplate;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +18,7 @@ public class BlogService {
     private final ApiCallerTemplate template;
 
     // 블로그 검색하기
-    public BlogDTO.Response blogClientService(@NotNull @Valid BlogRecordReqDTO request) {
+    public BlogDTO.Response blogClientService(@NotNull @Valid BlogReqDTO request) {
         return template.getList(request);
     }
 }

@@ -1,6 +1,6 @@
 package com.totoblog.service;
 
-import com.totoblog.data.dto.request.BlogRecordReqDTO;
+import com.totoblog.data.dto.request.BlogReqDTO;
 import com.totoblog.data.dto.response.KeywordDTO;
 import com.totoblog.data.entity.Keyword;
 import com.totoblog.data.repository.KeywordRepository;
@@ -30,8 +30,8 @@ public class KeywordService {
     }
 
     /*** 키워드 조회 시, 저장하기 ***/
-    public void saveKeyword(@NotNull @Valid BlogRecordReqDTO request) {
-        Keyword keyword = new Keyword(request.query());
+    public void saveKeyword(@NotNull @Valid BlogReqDTO request) {
+        Keyword keyword = new Keyword(request.getQuery());
 
         keywordRepository.save(keyword);
     }

@@ -1,6 +1,6 @@
 package com.totoblog.service.component;
 
-import com.totoblog.data.dto.request.BlogRecordReqDTO;
+import com.totoblog.data.dto.request.BlogReqDTO;
 import com.totoblog.data.dto.response.BlogDTO;
 import com.totoblog.data.dto.response.BlogKakaoDTO;
 import lombok.RequiredArgsConstructor;
@@ -34,25 +34,15 @@ public class KakaoBlogApiCaller implements ApiCaller {
     @Value("${api.kakao.path}")
     private String path;
 
-    public BlogDTO.Response list(final BlogRecordReqDTO request) {
-//        final HttpHeaders headers = new HttpHeaders();
-//        headers.set("Authorization", auth + " " + key);
-//        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+    public BlogDTO.Response list(final BlogReqDTO request) {
 
-//        URI uri = UriComponentsBuilder.fromHttpUrl(url + path)
-//                .queryParam("query", request.query())
-//                .queryParam("sort", request.sort())
-//                .queryParam("page", request.page())
-//                .queryParam("size", request.size())
-//                .build()
-//                .toUri();
         URI uri = UriComponentsBuilder
                 .fromUriString(url)
                 .path(path)
-                .queryParam("query", request.query())
-                .queryParam("sort", request.sort())
-                .queryParam("page", request.page())
-                .queryParam("size", request.size())
+                .queryParam("query", request.getQuery())
+                .queryParam("sort", request.getSort())
+                .queryParam("page", request.getPage())
+                .queryParam("size", request.getSize())
                 .encode()
                 .build().toUri();
 
@@ -71,7 +61,6 @@ public class KakaoBlogApiCaller implements ApiCaller {
         }
 
         return BlogDTO.kakaoOf(resEntity.getBody());
-        //return BlogMapper.INSTANCE.toDtoForKakao(resEntity.getBody());
     }
 
 }
