@@ -38,10 +38,10 @@ http://localhost:9999/swagger-ui/index.html
 
 ```json
 {
-  "code": code,
-  "message": msg,
+  "code": "code",
+  "message":"msg",
   "data": {
-    "sample": data
+    "sample": "data"
   }
 }
 ```
@@ -82,14 +82,14 @@ http://localhost:9999/swagger-ui/index.html?urls.primaryName=KEYWORD%20API
 
 #### Document
 
-| Name      | Type | Description                                         |
-|-----------|------|-----------------------------------------------------|
-| title     | String | 블로그 글 제목                                            |
-| contents  | String | 블로그 글 요약                                            |
-| url       | String | 블로그 글 URL                                           |
-| blogname  | String | 블로그의 이름                                             |
-| thumbnail | String | 검색 시스템에서 추출한 대표 미리보기 이미지 URL                        |
-| registrationDate  | Date | 블로그 글 작성시간, ISO 8601<br/>- ex: 2022-08-29 |
+| Name      | Type | Description                     |
+|-----------|------|---------------------------------|
+| title     | String | 블로그 글 제목                        |
+| contents  | String | 블로그 글 요약                        |
+| url       | String | 블로그 글 URL                       |
+| blogname  | String | 블로그의 이름                         |
+| thumbnail | String | 검색 시스템에서 추출한 대표 미리보기 이미지 URL    |
+| registrationDate  | Date | 블로그 글 작성시간 ex: 2023-03-19 |
 
 ### Sample
 
@@ -145,9 +145,9 @@ curl -X 'GET' \
 
 ### Response Data
 
-| Name      | Type                      | Description |
-|-----------|---------------------------|-------------|
-| popularKeywordInfos | Array(PopularKeywordInfo) | 인기검색어 정보    |
+| Name      | Type                         | Description |
+|-----------|------------------------------|-------------|
+| KeywordDTO | [Array] | 인기검색어 정보    |
 
 #### PopularKeywordInfo
 
@@ -192,4 +192,4 @@ curl -X 'GET' \
 > ./gradlew clean build --stacktrace --info --refresh-dependencies -x test
 > java -jar build/libs/totoblog-1.0.0.jar
 ```
-# temp_totoblog
+
