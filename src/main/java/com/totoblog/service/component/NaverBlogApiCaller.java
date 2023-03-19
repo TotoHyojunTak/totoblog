@@ -1,12 +1,13 @@
 package com.totoblog.service.component;
 
-import com.totoblog.data.dto.request.BlogRecordReqDTO;
+import com.totoblog.data.dto.request.BlogReqDTO;
 import com.totoblog.data.dto.response.BlogDTO;
 import com.totoblog.data.dto.response.BlogNaverDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -30,19 +31,22 @@ public class NaverBlogApiCaller {
     @Value("${api.kakao.path}")
     private String path;
 
-    public BlogDTO.Response list(final BlogRecordReqDTO request) {
+    public BlogDTO.Response list(final BlogReqDTO request) {
         URI uri = UriComponentsBuilder
                 .fromUriString(url)
                 .path(path)
+                .queryParam("query", request.getQuery())
+                .queryParam("sort", request.getSort())
+                .queryParam("page", request.getPage())
+                .queryParam("size", request.getSize())
                 .encode()
                 .build().toUri();
 
-        RequestEntity<BlogRecordReqDTO> res = RequestEntity
-                .post(uri)
-                .contentType(MediaType.ALL)
+        RequestEntity<Void> res = RequestEntity
+                .get(uri)
                 .header("X-Naver-Client-Id", clientId)
                 .header("X-Naver-Client-Secret", clientSecret)
-                .body(request)
+                .build()
                 ;
 
         final ResponseEntity<BlogNaverDTO.NaverResponse> resEntity = restTemplate.exchange(
