@@ -1,0 +1,96 @@
+server:
+  shutdown: graceful
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+  tomcat:
+    uri-encoding: UTF-8
+  port: 9999
+
+spring:
+  application:
+    name: toto-blog
+  datasource:
+    username: sa
+    password:
+    url: jdbc:h2:tcp://localhost/~/test
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+    open-in-view: true
+    show_sql: true
+    format_sql: true
+
+
+#########################################################
+#### API
+#########################################################
+api:
+  kakao:
+    url: https://dapi.kakao.com
+    authorization: KakaoAK
+    key: a44497b0b4151ec0db211f5ae847b607
+    path: /v2/search/blog
+  naver:
+    url: https://openapi.naver.com
+    client-id: f522O2wr4C9VIqtAQsKU
+    client-secret: q6IzHa4GmH
+    path: /v1/search/blog.json
+
+#########################################################
+#### Encrypt & Decrypt
+#########################################################
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+    password: A421080gsm
+
+#########################################################
+#### swagger
+#########################################################
+swagger:
+  base:
+    path: com.totoblog
+
+#########################################################
+#### logging
+#########################################################
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: TRACE
+    org.springframework.cache: TRACE
+    org.hibernate.SQL: DEBUG
+    org.hibernate.jpa: TRACE
+    org.hibernate.type.descriptor.sql: TRACE
+    com.zaxxer.hikari: DEBUG
+
+#########################################################
+#### Actuator
+#########################################################
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+    caches:
+      enabled: false
+
+info:
+  organization:
+    name: thj0309
+  contact:
+    email: thj0309@hotmail.com
