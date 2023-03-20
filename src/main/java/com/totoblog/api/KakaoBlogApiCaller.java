@@ -1,4 +1,4 @@
-package com.totoblog.service.component;
+package com.totoblog.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.totoblog.data.dto.request.BlogReqDTO;

@@ -1,9 +1,8 @@
 package com.totoblog.service;
 
-
 import com.totoblog.data.dto.request.BlogReqDTO;
 import com.totoblog.data.dto.response.BlogDTO;
-import com.totoblog.service.component.ApiCallerTemplate;
+import com.totoblog.api.ApiCallerTemplate;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

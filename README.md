@@ -12,6 +12,16 @@
 # 환경정보
 - JAVA 17 이상 (스프링 6 / 스프링부트 3.x 버전)
 
+
+# 기능 설명
+## 1. 블로그 조회 기능
+외부 통신 방법 RestTemplate, WebClient
+
+
+## 2. 최고 검색 건수 키워드 10선
+
+
+
 # Swagger
 http://localhost:9999/swagger-ui/index.html
 

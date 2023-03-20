@@ -1,4 +1,4 @@
-package com.totoblog.service.component;
+package com.totoblog.api;
 
 import com.totoblog.data.dto.request.BlogReqDTO;
 import com.totoblog.data.dto.response.BlogDTO;
