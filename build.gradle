@@ -4,6 +4,8 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.4'
     id 'io.spring.dependency-management' version '1.1.0'
+
+    id 'com.google.osdetector' version '1.7.0'
 }
 
 group = 'com'
@@ -52,6 +54,11 @@ dependencies {
     // prometheus
     implementation 'io.micrometer:micrometer-registry-prometheus'
 
+    // mac용 netty 라이브러리 추가
+    // web-client사용을 위한 mac arm에서는 native library를 호출할 수 없어 아래 내용을 추가하였음
+    if (osdetector.arch.equals("aarch_64")){
+        implementation "io.netty:netty-resolver-dns-native-macos:4.1.79.Final:osx-aarch_64"
+    }
 }
 
 tasks.named('test') {

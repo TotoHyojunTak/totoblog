@@ -1,11 +1,9 @@
 package com.totoblog.data.dto.response;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,7 +58,7 @@ public class BlogDTO {
         /*** 블로그의 이름 ***/
         private String blogname;
 
-        /*** 검색 시스템에서 추출한 대표 미리보기 이미지 URL, 미리보기 크기 및 화질은 변경될 수 있음 ***/
+        /*** 검색 시스템에서 추출한 대표 미리보기 이미지 URL, 미리보기 크기 및 화질은 변경 ***/
         private String thumbnail;
 
         /*** 블로그 글 작성일자 ***/
@@ -68,7 +66,29 @@ public class BlogDTO {
 
     }
 
-    /*** Kakao 결과 매핑 ***/
+    /*** Kakao 결과 매핑(webclient) ***/
+    public static Response webClientKakaoOf(BlogKakaoDTO.KakaoResponse res) {
+        final BlogDTO.Meta meta = kakaoOf(res.getMeta());
+
+        final List<BlogDTO.Documents> documentList = res.getDocuments()
+                .stream()
+                .map(BlogDTO::kakaoOf)
+                .collect(Collectors.toList());
+        return Response.of(meta, documentList);
+    }
+
+    /*** Naver 결과 매핑(webclient) ***/
+    public static Response webClientNaverOf(BlogNaverDTO.NaverResponse res) {
+        final BlogDTO.Meta meta = naverOfMeta(res.getStart(), res);
+
+        final List<BlogDTO.Documents> documentList = res.getItems()
+                .stream()
+                .map(BlogDTO::naverOf)
+                .collect(Collectors.toList());
+        return Response.of(meta, documentList);
+    }
+
+    /*** Kakao 결과 매핑(restTemplate) ***/
     public static Response kakaoOf(final BlogKakaoDTO.KakaoResponse response) {
         final BlogDTO.Meta meta = kakaoOf(response.getMeta());
         final List<BlogDTO.Documents> documentList = response.getDocuments()

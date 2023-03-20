@@ -40,7 +40,7 @@ api:
   naver:
     url: https://openapi.naver.com
     client-id: f522O2wr4C9VIqtAQsKU
-    client-secret: q6IzHa4GmH
+    client-secret: PEmAsMI4x1
     path: /v1/search/blog.json
 
 #########################################################
@@ -50,13 +50,6 @@ jasypt:
   encryptor:
     bean: jasyptStringEncryptor
     password: A421080gsm
-
-#########################################################
-#### swagger
-#########################################################
-swagger:
-  base:
-    path: com.totoblog
 
 #########################################################
 #### logging
@@ -71,6 +64,7 @@ logging:
     org.hibernate.jpa: TRACE
     org.hibernate.type.descriptor.sql: TRACE
     com.zaxxer.hikari: DEBUG
+    com.totoblog: DEBUG
 
 #########################################################
 #### Actuator
