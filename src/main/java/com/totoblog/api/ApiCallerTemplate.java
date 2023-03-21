@@ -15,14 +15,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ApiCallerTemplate {
 
-	private final List<ApiCaller> providerCaller;
+	private final List<ApiCaller> providers;
+
+	/*** ApiCaller를 상속받은 서비스사 한번에 조회가능하도록 상속처리
+	 *** 하지만, 서비스 마다 Request & Response 형식이 다르기 때문에 최종 결과에 맞게 매핑 필요
+	 *+*/
 
 	public BlogDTO.Response getList(@NotNull @Valid BlogReqDTO request) {
-		for (ApiCaller client : providerCaller) {
+		for (ApiCaller provider : providers) {
 			try {
-				return client.list(request);
+				return provider.list(request);
 			} catch (Exception e) {
-				log.warn("Client {} failed {}", client.getClass().getName(), e);
+				log.warn("Client {} - {}", provider.getClass().getName(), e);
 			}
 		}
 		throw new RuntimeException("블로그 검색 API 최종 실패.");

@@ -13,7 +13,7 @@ spring:
     name: toto-blog
   datasource:
     username: sa
-    password:
+    password: sa
     url: jdbc:h2:tcp://localhost/~/test
     driver-class-name: org.h2.Driver
   jpa:
@@ -43,13 +43,6 @@ api:
     client-secret: PEmAsMI4x1
     path: /v1/search/blog.json
 
-#########################################################
-#### Encrypt & Decrypt
-#########################################################
-jasypt:
-  encryptor:
-    bean: jasyptStringEncryptor
-    password: A421080gsm
 
 #########################################################
 #### logging
@@ -61,7 +54,7 @@ logging:
     org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: TRACE
     org.springframework.cache: TRACE
     org.hibernate.SQL: DEBUG
-    org.hibernate.jpa: TRACE
+    org.hibernate.jpa: DEBUG
     org.hibernate.type.descriptor.sql: TRACE
     com.zaxxer.hikari: DEBUG
     com.totoblog: DEBUG

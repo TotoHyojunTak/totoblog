@@ -5,8 +5,8 @@
 - (to do list) Multi Module Project (블로그 조회 기능, 인기 검색어 조회/저장 ) 
 - 기본적으로 카카오 검색을 우선으로 하며 카카오 검색이 되지 않는 경우 네이버 검색으로 전환한다. 이외에도 검색이 되지 않는다면 에러가 발생하도록 조치한다
 
-- 외부와의 서비스 통신
-  - RestTemplate (Spring 5.x 이후, deprecated로 비권장)
+- 외부와의 서비스 통신 (2가지 방법 모두 구현)
+  - RestTemplate (Spring 5.x 이후, deprecated로 비권장으로 주석처리함)
   - WebClient (Spring 5.x 이후 출시, Webflux, 동기/비동기 모두 접근 가능)
 
 # 환경정보
@@ -15,9 +15,6 @@
 
 # 기능 설명
 ## 1. 블로그 조회 기능
-외부 통신 방법 RestTemplate, WebClient
-
-
 ## 2. 최고 검색 건수 키워드 10선
 
 
@@ -26,11 +23,8 @@
 http://localhost:9999/swagger-ui/index.html
 
 # API 명세
-
 ## 공통
-
 ### 공통 응답 코드
-
 | Code   | Description |
 |--------|-------------|
 | 200    | 성공        |
@@ -39,7 +33,6 @@ http://localhost:9999/swagger-ui/index.html
 | 500    | 서버 오류    |
 
 ### Response 구조
-
 | Name | Type   | Description   |
 |------|--------|---------------|
 | code | String | 응답 코드         |
@@ -65,10 +58,11 @@ http://localhost:9999/swagger-ui/index.html?urls.primaryName=BLOG%20API
 ### [바로가기] KEYWORD API
 http://localhost:9999/swagger-ui/index.html?urls.primaryName=KEYWORD%20API
 
-## /blog/blogs : 블로그 검색
+# 기능 설명
+
+## 1. /blog/blogs : 블로그 검색
 
 ### Parameter
-
 | Name  | Type    | Description                                               | Required |
 |-------|---------|-----------------------------------------------------------|----------|
 | query | String  | 검색을 원하는 질의어      | O        |
@@ -77,20 +71,19 @@ http://localhost:9999/swagger-ui/index.html?urls.primaryName=KEYWORD%20API
 | size  | Integer | 한 페이지에 보여질 문서 수<br/>- 1~50 사이의 값(기본 값 1)                  | X        |
 
 ### Response Data
-
 | Name      | Type     | Description          |
 |-----------|----------|----------------------|
 | meta      | Meta     | 블로그 조회 메타정보 |
 | documents | [Array]  | 블로그 조회결과      |
 
-#### Meta
+#### Response Data (Detail) - meta [Meta]
 
 | Name          | Type    | Description            |
 |---------------|---------|------------------------|
 | totalCount    | Integer | 검색된 문서 수               |
 | isEnd         | Boolean | 현재 페이지가 마지막 페이지 여부     |
 
-#### Document
+#### Response Data (Detail) - documents [Array]
 
 | Name      | Type | Description                     |
 |-----------|------|---------------------------------|
@@ -151,25 +144,21 @@ curl -X 'GET' \
 }
 ```
 
-## /keyword/keywords: 인기 검색어 조회
+## 2. /keyword/keywords: 인기 검색어 조회
 
 ### Response Data
-
 | Name      | Type                         | Description |
 |-----------|------------------------------|-------------|
 | KeywordDTO | [Array] | 인기검색어 정보    |
 
-#### PopularKeywordInfo
-
-| Name      | Type    | Description |
-|-----------|---------|-------------|
-| keyword   | String  | 검색어         |
-| searchCount     | Integer | 검색 건수       |
+#### Response Data (Detail)
+| Name    | Type    | Description |
+|---------|---------|-------------|
+| keyword | String  | 검색어         |
+| cnt     | Integer | 검색 건수       |
 
 ### Sample
-
 #### Request curl
-
 ```curl
 curl -X 'GET' \
   'http://localhost:9999/keyword/keywords' \
@@ -178,7 +167,6 @@ curl -X 'GET' \
 ```
 
 #### Response JSON
-
 ```json
 {
   "code": "200",
@@ -195,6 +183,18 @@ curl -X 'GET' \
   ]
 }
 ```
+
+# Spring Actuator
+## 스프링 부트 애플리케이션을 모니터링하고 관리하는 데 도움이 되는 여러 가지 추가 기능이 포함
+### health : 응용 프로그램 상태 정보를 표시하는 데 사용됩니다
+http://localhost:9999/actuator/health
+
+### info : 임의 응용 프로그램 정보를 표시하는 데 사용됩니다.
+http://localhost:9999/actuator/info
+
+### loggers : 응용 프로그램에서 로거의 구성을 표시하고 수정하는 데 사용됩니다.
+http://localhost:9999/actuator/info
+
 
 # jar 파일 만드는 방법과 실행하는 방법
 

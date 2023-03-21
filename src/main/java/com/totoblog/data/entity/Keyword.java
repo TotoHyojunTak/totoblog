@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class Keyword {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String keyword;
 
@@ -27,5 +27,6 @@ public class Keyword {
 
     public Keyword(String keyword) {
         this.keyword = keyword;
+        this.createdAt = LocalDateTime.now();
     }
 }
