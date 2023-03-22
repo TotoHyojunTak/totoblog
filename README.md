@@ -8,6 +8,8 @@
 - 외부와의 서비스 통신 (2가지 방법 모두 구현)
   - RestTemplate (Spring 5.x 이후, deprecated로 비권장으로 주석처리함)
   - WebClient (Spring 5.x 이후 출시, Webflux, 동기/비동기 모두 접근 가능)
+- H2 Database 활용 
+  - id / pw : sa / sa
 
 # 환경정보
 - JAVA 17 이상 (스프링 6 / 스프링부트 3.x 버전)
