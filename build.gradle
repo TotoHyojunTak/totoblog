@@ -35,7 +35,6 @@ dependencies {
 
     // spring 5.x 버전 이후 신규 기능
     implementation 'org.springframework.boot:spring-boot-starter-webflux'  // 필수
-    implementation 'org.springframework.boot:spring-boot-starter-web'  // 선택사항
 
     // openapi
     implementation 'org.springdoc:springdoc-openapi-starter-common:2.0.2'

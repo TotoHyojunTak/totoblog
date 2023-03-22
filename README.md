@@ -1,8 +1,8 @@
 
 # 간단한 블로그 API 기능을 포함한 프로젝트
 - Spring Boot 3 (Spring 6) & JDK 17
-- Single Project 
-- (to do list) Multi Module Project (블로그 조회 기능, 인기 검색어 조회/저장 ) 
+- Single Project : https://github.com/TotoHyojunTak/totoblog
+  - 참고) Multi Module Project : https://github.com/TotoHyojunTak/totoblog-multi
 - 기본적으로 카카오 검색을 우선으로 하며 카카오 검색이 되지 않는 경우 네이버 검색으로 전환한다. 이외에도 검색이 되지 않는다면 에러가 발생하도록 조치한다
 
 - 외부와의 서비스 통신 (2가지 방법 모두 구현)
